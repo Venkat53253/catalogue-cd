@@ -18,7 +18,8 @@ pipeline {
         choice(name: 'deploy_to', choices: ['dev', 'qa', 'prod'], description: 'Pick the Environment')
     }
     // Build
-    stage('Check Status'){
+    stages {
+        stage('Check Status'){
     steps{
         script{
             withAWS(credentials: 'aws-creds', region: 'us-east-1') {
@@ -34,6 +35,7 @@ pipeline {
                     script: "kubectl rollout status deployment/catalogue --timeout=30s -n $PROJECT || echo FAILED"
                 ).trim()
 
+                ...
             }
         }
     }
