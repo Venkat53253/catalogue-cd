@@ -35,7 +35,6 @@ pipeline {
                     script: "kubectl rollout status deployment/catalogue --timeout=30s -n $PROJECT || echo FAILED"
                 ).trim()
 
-                ...
             }
         }
     }
